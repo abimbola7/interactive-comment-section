@@ -1,24 +1,39 @@
 import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import { postActions } from './store/post-slice';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchPostData } from './store/post-slice';
+import Comment from './components/Comments/Comment';
+import AddComment from './components/Comments/add-comment';
+import Container from './components/ui/container';
 
 function App() {
+  const dispatch = useDispatch()
+  const user = useSelector(state=>state.post.items);
+  console.log(user); 
+  useEffect(() => {
+    dispatch(fetchPostData())
+  }, [dispatch])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      {
+          user.hasOwnProperty('currentUser'&& 'comments') && user.comments.map((commentData)=>(
+            <Comment
+            key={commentData.id}
+            commentData={commentData}
+            user={user.currentUser}
+            />
+          ))
+      }
+      {
+        user.hasOwnProperty('currentUser'&& 'comments') && 
+        <AddComment
+        mode="SEND"
+        user={user.currentUser}
+        />
+      }
+    </Container>
   );
 }
 
