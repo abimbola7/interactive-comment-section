@@ -8,12 +8,13 @@ const Button = (props) => {
   const { content } = props
   return (
     <button 
-    className={`${props.className} flex space-x-1  items-center font-bold`}
+    className={`${props.className} flex space-x-1  items-center font-semibold`}
     onClick={props.onClick}
     >
       {content === "REPLY" ? <FaReply/> : 
       content === "Delete" ? <AiFillDelete/> :
-      <MdOutlineModeEdit/> 
+      content === "Edit" ? <MdOutlineModeEdit/> :
+      ""
       }
       <p>{ content }</p>
     </button>

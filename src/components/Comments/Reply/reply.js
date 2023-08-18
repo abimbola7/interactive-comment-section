@@ -7,10 +7,10 @@ import AddComment from "../add-comment";
 
 const Reply = (props) => {
   const user = useSelector(state=>state.post.items)
-  const { commentData, commentDatas } = props;
+  const { commentData, commentDatas, id, index, ind } = props;
+  console.log(commentDatas);
   const { users } = props;
   const [ isReplying, setIsReplying ] = useState(false)
-  console.log(commentData.id);
   return (
     <Fragment>
       <Card
@@ -21,6 +21,10 @@ const Reply = (props) => {
         /> 
         <div className="flex-1 space-y-3">
           <CommentHeader
+          ind={ind}
+          index={index}
+          mode="REPLY"
+          ids={id}
           setIsReplying={setIsReplying}
           users={users}
           commentData={commentData}
@@ -33,6 +37,7 @@ const Reply = (props) => {
       </Card> 
       { isReplying && <AddComment
         id={commentDatas.id}
+        setIsReplying={setIsReplying}
         commentData={commentData}
         mode="REPLY"
         user={user.currentUser}

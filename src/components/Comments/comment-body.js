@@ -6,9 +6,7 @@ const CommentBody = (props) => {
   let content1 = content
   if (replyingTo) {
     let str1 = content.split(",")
-    console.log(str1);
     str1.unshift(" ")
-    console.log(str1.join(""));
     content1 = str1.join("")
   }
   return (

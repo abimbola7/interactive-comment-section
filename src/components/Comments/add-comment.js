@@ -7,17 +7,14 @@ import { v4 as uuid } from "uuid"
 
 const AddComment = (props) => {
   const dispatch  = useDispatch();
-  const { commentData } = props
-  console.log(commentData);
+  const { commentData, setIsReplying } = props
   const [ comment, setComment ] = useState("")
-  // console.log(props.user.image);
   const { mode, user } = props;
   const onFormHandler = (e) => {
     setComment(e.target.value)
   }
   const onFormSubmit = (e) => {
     e.preventDefault()
-    console.log(comment);
     if (comment.trim() === "") return
     let postData;
     if (mode === "REPLY") {
@@ -42,7 +39,8 @@ const AddComment = (props) => {
         replies : []
       }
     }
-    dispatch(postActions.addComment({postData:postData, mode:mode, id:props.id}))
+    dispatch(postActions.addComment({postData:postData, mode:mode, id:props.id}));
+    setIsReplying && setIsReplying(prevState=>!prevState);
     setComment("")
   };
   

@@ -2,20 +2,30 @@ import React from "react";
 import { FaReply } from "react-icons/fa"
 import Image from "../ui/Image";
 import Button from "../ui/button";
-
+import { useDispatch } from "react-redux";
+import { uiActions } from "../../store/ui-slice";
+import { postActions } from "../../store/post-slice";
 
 const CommentHeader = (props) => {
+  const dispatch = useDispatch()
   const {
     user,
     createdAt,
     id,
   } = props.commentData
-  const { users } = props 
+  console.log(id);
+  const { users, mode, ids, index, ind } = props 
+  console.log(ind);
+  console.log(ids);
   const { setIsReplying } = props
-  console.log(props.users);
   const replyHandler = () => {
     setIsReplying(prevState=>!prevState)
   };
+  const deleteComment = () => {
+    dispatch(uiActions.modalIsToggled())
+    dispatch(postActions.captureData({ id:id, mode:mode, outerId:ids, index:index, ind:ind }))
+    console.log(id);
+  }
   return (
     <div className="flex flex-row justify-between items-center">
               <div className="flex space-x-2 items-center">
@@ -33,7 +43,7 @@ const CommentHeader = (props) => {
                 {
                   user.username === users.username &&
                    <div 
-                   className="px-2 pb-1 rounded-sm text-center bg-moderateBlue text-white"
+                   className="px-1 pb-1 rounded-sm text-sm text-center bg-moderateBlue text-white"
                    >
                     you
                     </div>
@@ -53,6 +63,7 @@ const CommentHeader = (props) => {
                     <Button 
                     content="Delete"
                     className="text-softRed hover:text-paleRed"
+                    onClick={deleteComment}
                     />
                     <Button 
                     content="Edit"
