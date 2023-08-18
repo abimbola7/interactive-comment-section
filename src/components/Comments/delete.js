@@ -8,7 +8,6 @@ import { postActions } from "../../store/post-slice";
 const DeleteComment = () => {
   const dispatch = useDispatch()
   const modal = useSelector(state=>state.ui.isModalToggled)
-  console.log(modal);
   return (
     <Fragment>
       {

@@ -6,6 +6,7 @@ import { postActions } from "../../store/post-slice";
 import { v4 as uuid } from "uuid"
 
 const AddComment = (props) => {
+  const date = new Date();
   const dispatch  = useDispatch();
   const { commentData, setIsReplying } = props
   const [ comment, setComment ] = useState("")
@@ -22,7 +23,7 @@ const AddComment = (props) => {
         postData = {
           id : uuid().slice(0,8),
           content : comment,
-          createdAt : "not yet",
+          createdAt : date.toISOString(),
           score : 0,
           user : user,
           // replies : [],
@@ -33,7 +34,7 @@ const AddComment = (props) => {
       postData = {
         id : uuid().slice(0,8),
         content : comment,
-        createdAt : "not yet",
+        createdAt : date.getTime(),
         score : 0,
         user : user,
         replies : []

@@ -4,7 +4,6 @@ import Reply from "./reply";
 const ReplyContainer = (props) => {
   const { users, index } = props
   const { replies, commentData } = props;
-  console.log(commentData.id);
   return (
     <div
     className="space-y-4 pl-12 relative after:absolute after:w-[2px] after:h-full after:bg-lightGray after:top-0 after:left-5 after:z-[100]"

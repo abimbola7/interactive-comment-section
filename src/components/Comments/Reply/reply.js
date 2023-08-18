@@ -8,7 +8,6 @@ import AddComment from "../add-comment";
 const Reply = (props) => {
   const user = useSelector(state=>state.post.items)
   const { commentData, commentDatas, id, index, ind } = props;
-  console.log(commentDatas);
   const { users } = props;
   const [ isReplying, setIsReplying ] = useState(false)
   return (

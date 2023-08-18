@@ -25,13 +25,11 @@ const postSlice = createSlice({
       if (mode === "SEND") {
         state.items.comments.push(postData)
       } else if(mode === "REPLY"){
-        console.log(ids);
         let pickedItem = state.items.comments.find((elem)=>elem.id === ids)
         pickedItem.replies.push(postData);
       }
     },
     captureData(state, action){
-      console.log(action.payload);
       state.tempData = {...action.payload}
     },
     deleteComment(state, action){

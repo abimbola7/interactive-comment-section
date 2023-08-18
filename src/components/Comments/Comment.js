@@ -13,7 +13,6 @@ const Comment = (props) => {
   const { commentData } = props;
   const { user, index } = props;
   const [isReplying, setIsReplying] = useState(false);
-  console.log(commentData.id);
   return (
     <div className="space-y-3">
       <Card

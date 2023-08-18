@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaReply } from "react-icons/fa"
 import Image from "../ui/Image";
 import Button from "../ui/button";
@@ -7,24 +7,48 @@ import { uiActions } from "../../store/ui-slice";
 import { postActions } from "../../store/post-slice";
 
 const CommentHeader = (props) => {
+  let dates = `0 second ago`
+  // const currentDate = new Date();
+  const [date, setDate] = useState('seconds ago')
   const dispatch = useDispatch()
   const {
     user,
     createdAt,
     id,
   } = props.commentData
-  console.log(id);
   const { users, mode, ids, index, ind } = props 
-  console.log(ind);
-  console.log(ids);
-  const { setIsReplying } = props
+  const { setIsReplying } = props;
+
+
+  useEffect(() => {
+    function getTime(){
+    const timeDiff = new Date().getTime() - new Date(createdAt).getTime();
+    if (timeDiff > 60000) {
+      let initDate = Math.floor(timeDiff / 60000);
+      setDate(`${initDate} ${initDate > 1 ? 'minutes' : 'minute'} ago`)
+    }
+    if (timeDiff > 3600000) {
+      let initDate = Math.floor(timeDiff / 3600000);
+      setDate(`${initDate} ${initDate > 1 ? 'hours' : 'hour'} ago`)
+    }
+    if (timeDiff > 86400000) {
+      let initDate = Math.floor(timeDiff / 86400000);
+      setDate(`${initDate} ${initDate > 1 ? 'days' : 'day'} ago`)
+    }
+      }
+      const interval = setInterval(getTime,1000);
+      return () => {
+        clearInterval(interval)
+      }
+    
+  }, [createdAt])
+  
   const replyHandler = () => {
     setIsReplying(prevState=>!prevState)
   };
   const deleteComment = () => {
     dispatch(uiActions.modalIsToggled())
     dispatch(postActions.captureData({ id:id, mode:mode, outerId:ids, index:index, ind:ind }))
-    console.log(id);
   }
   return (
     <div className="flex flex-row justify-between items-center">
@@ -48,7 +72,7 @@ const CommentHeader = (props) => {
                     you
                     </div>
                 }
-                <p className="">{createdAt}</p>
+                <p className="">{date}</p>
               </div>
               {
                 user.username !== users.username ? (
