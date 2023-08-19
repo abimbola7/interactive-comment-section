@@ -7,8 +7,6 @@ import { uiActions } from "../../store/ui-slice";
 import { postActions } from "../../store/post-slice";
 
 const CommentHeader = (props) => {
-  let dates = `0 second ago`
-  // const currentDate = new Date();
   const [date, setDate] = useState('seconds ago')
   const dispatch = useDispatch()
   const {
@@ -85,13 +83,13 @@ const CommentHeader = (props) => {
               {
                 user.username !== users.username ? (
                   <Button
-                  className="text-moderateBlue"
+                  className="text-moderateBlue hidden xs:flex hover:text-lightBlue"
                   content="REPLY"
                   onClick={replyHandler}
                   />
                 ) : 
                 (
-                  <div className="flex space-x-4 justify-between items-center">
+                  <div className="space-x-4 justify-between items-center hidden xs:flex">
                     <Button 
                     content="Delete"
                     className="text-softRed hover:text-paleRed"
@@ -100,7 +98,7 @@ const CommentHeader = (props) => {
                     <Button 
                     onClick={editHandler}
                     content="Edit"
-                    className="text-moderateBlue"
+                    className="text-moderateBlue hover:text-lightBlue"
                     />
           
                   </div>

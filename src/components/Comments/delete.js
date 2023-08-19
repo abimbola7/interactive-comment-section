@@ -15,15 +15,15 @@ const DeleteComment = () => {
         <div className="border px-4 py-7 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute  w-[23rem] max-w-[95%] rounded-xl bg-white space-y-4 text-grayishBlue">
           <h1 className="text-xl font-bold text-darkBlue">Delete Comment</h1>
           <p className="font-medium">Are you sure you want to delete this comment? This will remove the comment and can't be undone</p>
-          <div className="flex space-x-3 text-white justify-center">
+          <div className="flex space-x-6 xs:space-x-3 text-white justify-center">
             <Button
             onClick={()=>dispatch(uiActions.modalIsToggled())}
             content="NO, CANCEL"
-            className="bg-softRed px-8 py-3 rounded-lg"
+            className="bg-softRed px-4 xs:px-8 py-3 rounded-lg"
             ></Button>
             <Button
             content="YES, DELETE"
-            className="bg-grayishBlue px-8 py-3 rounded-lg"
+            className="bg-grayishBlue px-4 xs:px-8 py-3 rounded-lg"
             onClick={()=>{
               dispatch(postActions.deleteComment());
               dispatch(uiActions.modalIsToggled())

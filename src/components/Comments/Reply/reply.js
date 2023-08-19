@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import Card from "../../ui/Card";
-import { CommentBody, CommentHeader } from "../index";
+import { CommentBody, CommentHeader, CommentFooter } from "../index";
 import { useSelector } from "react-redux";
 import Votes from "../../ui/votes";
 import AddComment from "../add-comment";
@@ -17,6 +17,8 @@ const Reply = (props) => {
       className="flex flex-row space-x-3 mt-3 relative right-0"
       >
         <Votes
+        className="hidden xs:flex"
+        index={index}
         mode="REPLY"
         commentData={commentData}
         votes={commentData.score}
@@ -39,6 +41,17 @@ const Reply = (props) => {
           setIsEditing={setIsEditing}
           commentData={ commentData }
           replyingTo={commentData.replyingTo}
+          />
+          <CommentFooter
+          ind={ind}
+          index={index}
+          mode="REPLY"
+          ids={id}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
+          setIsReplying={setIsReplying}
+          users={users}
+          commentData={commentData}
           />
         </div>
       </Card> 

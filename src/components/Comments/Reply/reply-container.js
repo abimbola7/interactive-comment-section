@@ -6,7 +6,7 @@ const ReplyContainer = (props) => {
   const { replies, commentData } = props;
   return (
     <div
-    className="space-y-4 pl-12 relative after:absolute after:w-[2px] after:h-full after:bg-lightGray after:top-0 after:left-5 after:z-[100]"
+    className="space-y-4 pl-[6%] relative after:absolute after:w-[2px] after:h-full after:bg-lightGray after:top-0 after:left-[3%] after:z-[100]"
     >
       {
       replies.map((replyData, ind)=>(

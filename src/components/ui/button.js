@@ -16,7 +16,7 @@ const Button = (props) => {
       content === "Edit" ? <MdOutlineModeEdit/> :
       ""
       }
-      <p>{ content }</p>
+      { <p className='text capitalize'>{content}</p> }
     </button>
   )
 };

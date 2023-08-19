@@ -20,6 +20,8 @@ const Comment = (props) => {
       className="flex flex-row space-x-3 mt-3 relative right-0"
       >
         <Votes
+        className="hidden xs:flex"
+        index={index}
         votes={commentData.score}
         commentData={commentData}
         mode="SEND"
@@ -42,10 +44,13 @@ const Comment = (props) => {
           commentData={ commentData }
           />
           <CommentFooter
-          mode="SEND"
-          commentData={commentData}
-          isEditing={isEditing}
           setIsEditing={setIsEditing}
+          index={index}
+          ids={commentData.id}
+          mode="SEND"
+          setIsReplying={setIsReplying}
+          users={user}
+          commentData={commentData}
           />
         </div>
       </Card>

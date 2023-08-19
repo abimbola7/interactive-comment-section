@@ -57,6 +57,7 @@ const postSlice = createSlice({
   increaseVote(state, action){
     let mode = action.payload.mode;
     let id = action.payload.id;
+    let i = action.payload.index
     if (mode === "SEND") {
       let pickedItem  = state.items.comments.find((elem)=>elem.id === id);
       if (pickedItem.userVote !== "upvote") {
@@ -65,10 +66,19 @@ const postSlice = createSlice({
       }
       console.log(pickedItem);
     }
+    if (mode === "REPLY") {
+      let pickedItem = state.items.comments[i].replies.find((elem)=>elem.id === id)
+      if (pickedItem.userVote !== "upvote") {
+        pickedItem.score += 1
+        pickedItem.userVote = "upvote"
+      }
+      
+    }
   },
   decreaseVote(state,action){
     let mode = action.payload.mode;
     let id = action.payload.id;
+    let i = action.payload.index
     if (mode === "SEND") {
       let pickedItem  = state.items.comments.find((elem)=>elem.id === id);
       console.log(pickedItem);
@@ -79,7 +89,14 @@ const postSlice = createSlice({
         pickedItem.score -= 1
         pickedItem.userVote = "downvote"
       }
-
+    }
+    if (mode === "REPLY") {
+      let pickedItem = state.items.comments[i].replies.find((elem)=>elem.id === id)
+      if (pickedItem.userVote !== "downvote") {
+        pickedItem.score -= 1
+        pickedItem.userVote = "downvote"
+      }
+      
     }
   }
 }})

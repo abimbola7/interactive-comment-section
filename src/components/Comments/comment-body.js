@@ -30,8 +30,7 @@ const CommentBody = (props) => {
           createdAt : date.toISOString(),
           score : score,
           user : user,
-          // replies : [],
-          replyingTo: props.commentData.user.username
+          replyingTo: replyingTo
         }
       } 
     } else{
@@ -68,7 +67,7 @@ const CommentBody = (props) => {
             />
             {
               isEditing && <Button
-              className="bg-moderateBlue font-bold text-white px-4 py-2 rounded-lg float-right"
+              className="bg-moderateBlue font-bold text-white px-1 py-1 xs:px-4 xs:py-2 rounded-lg float-right"
               content="UPDATE"
               onClick={updateHandler}
               />

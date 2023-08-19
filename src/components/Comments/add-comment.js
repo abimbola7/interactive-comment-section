@@ -66,7 +66,7 @@ const AddComment = (props) => {
         placeholder="Type something"
         ></textarea>
         <button
-        className="px-5 py-3 rounded-lg bg-moderateBlue hover:bg-opacity-50 text-white font-semibold h-12 flex items-center justify-center outline-none focus:outline-none"
+        className="px-2 py-2 xs:px-5 xs:py-3 rounded-md xs:rounded-lg bg-moderateBlue hover:bg-opacity-50 text-white font-semibold h-8 xs:h-12 flex items-center justify-center outline-none focus:outline-none"
         >
           { mode }
         </button>
