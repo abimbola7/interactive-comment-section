@@ -17,12 +17,16 @@ const CommentHeader = (props) => {
     id,
   } = props.commentData
   const { users, mode, ids, index, ind } = props 
-  const { setIsReplying } = props;
+  const { setIsReplying, setIsEditing } = props;
 
 
   useEffect(() => {
     function getTime(){
     const timeDiff = new Date().getTime() - new Date(createdAt).getTime();
+    if (timeDiff > 100) {
+      let initDate = Math.floor(timeDiff / 1000);
+      setDate(`${initDate} ${initDate > 1 ? 'seconds' : 'seconds'} ago`)
+    }
     if (timeDiff > 60000) {
       let initDate = Math.floor(timeDiff / 60000);
       setDate(`${initDate} ${initDate > 1 ? 'minutes' : 'minute'} ago`)
@@ -46,6 +50,10 @@ const CommentHeader = (props) => {
   const replyHandler = () => {
     setIsReplying(prevState=>!prevState)
   };
+  const editHandler = () => {
+    setIsEditing(prevState=>!prevState)
+  };
+
   const deleteComment = () => {
     dispatch(uiActions.modalIsToggled())
     dispatch(postActions.captureData({ id:id, mode:mode, outerId:ids, index:index, ind:ind }))
@@ -90,6 +98,7 @@ const CommentHeader = (props) => {
                     onClick={deleteComment}
                     />
                     <Button 
+                    onClick={editHandler}
                     content="Edit"
                     className="text-moderateBlue"
                     />

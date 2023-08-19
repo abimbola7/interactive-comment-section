@@ -10,12 +10,15 @@ const Reply = (props) => {
   const { commentData, commentDatas, id, index, ind } = props;
   const { users } = props;
   const [ isReplying, setIsReplying ] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
   return (
     <Fragment>
       <Card
       className="flex flex-row space-x-3 mt-3 relative right-0"
       >
         <Votes
+        mode="REPLY"
+        commentData={commentData}
         votes={commentData.score}
         /> 
         <div className="flex-1 space-y-3">
@@ -24,11 +27,16 @@ const Reply = (props) => {
           index={index}
           mode="REPLY"
           ids={id}
+          setIsEditing={setIsEditing}
           setIsReplying={setIsReplying}
           users={users}
           commentData={commentData}
           />
           <CommentBody
+          ids={index}
+          mode="REPLY"
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
           commentData={ commentData }
           replyingTo={commentData.replyingTo}
           />

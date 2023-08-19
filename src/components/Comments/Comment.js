@@ -3,7 +3,7 @@ import Card  from "../ui/Card"
 import Votes from "../ui/votes";
 import ReactDOM from "react-dom";
 import DeleteComment from "./delete";
-import { CommentHeader, CommentBody } from "./index"
+import { CommentHeader, CommentBody, CommentFooter } from "./index"
 import ReplyContainer from "./Reply/reply-container";
 import AddComment from "./add-comment";
 import { useSelector } from "react-redux";
@@ -13,6 +13,7 @@ const Comment = (props) => {
   const { commentData } = props;
   const { user, index } = props;
   const [isReplying, setIsReplying] = useState(false);
+  const [isEditing, setIsEditing] = useState(false)
   return (
     <div className="space-y-3">
       <Card
@@ -20,9 +21,12 @@ const Comment = (props) => {
       >
         <Votes
         votes={commentData.score}
+        commentData={commentData}
+        mode="SEND"
         /> 
         <div className="flex-1 space-y-3">
           <CommentHeader
+          setIsEditing={setIsEditing}
           index={index}
           ids={commentData.id}
           mode="SEND"
@@ -31,7 +35,17 @@ const Comment = (props) => {
           commentData={commentData}
           />
           <CommentBody
+          mode="SEND"
+          users={user}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
           commentData={ commentData }
+          />
+          <CommentFooter
+          mode="SEND"
+          commentData={commentData}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
           />
         </div>
       </Card>

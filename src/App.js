@@ -13,6 +13,7 @@ import DeleteComment from './components/Comments/delete';
 function App() {
   const dispatch = useDispatch()
   const user = useSelector(state=>state.post.items);
+  console.log(user);
   // user.hasOwnProperty('comments') && user.comments.forEach(element=>{
   //   let pickedItem = element.replies.filter(elem=>elem.id !== 3)=-
   //   console.log(pickedItem);
