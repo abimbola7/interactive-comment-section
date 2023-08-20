@@ -64,7 +64,7 @@ const AddComment = (props) => {
         rows="3" 
         className="flex-1 border focus:outline-none border-lightBlue focus:border-moderateBlue rounded-lg focus:border-[3px] px-3 py-3"
         placeholder="Type something"
-        ></textarea>
+        />
         <button
         className="px-2 py-2 xs:px-5 xs:py-3 rounded-md xs:rounded-lg bg-moderateBlue hover:bg-opacity-50 text-white font-semibold h-8 xs:h-12 flex items-center justify-center outline-none focus:outline-none"
         >

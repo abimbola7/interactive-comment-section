@@ -6,13 +6,21 @@ const postInitialState = {
   tempData : {}
 }
 
+
+
 const postSlice = createSlice({
   name: 'post',
   initialState : postInitialState,
   reducers: {
     fetchPost(state, action){
       console.log("items",action.payload)
-      state.items = {...action.payload}
+      const item1  = action.payload;
+      if (localStorage.getItem("postItems") !== null) {
+        state.items = JSON.parse(localStorage.getItem("postItems"))
+      } else{
+        localStorage.setItem("postItems", JSON.stringify(item1))
+        state.items = JSON.parse(localStorage.getItem("postItems"))
+      }
     },
     addComment(state, action){
       let mode = action.payload.mode;
@@ -24,6 +32,7 @@ const postSlice = createSlice({
         let pickedItem = state.items.comments.find((elem)=>elem.id === ids)
         pickedItem.replies.unshift(postData);
       }
+      localStorage.setItem("postItems", JSON.stringify(state.items))
     },
     captureData(state, action){
       state.tempData = {...action.payload}
@@ -37,6 +46,7 @@ const postSlice = createSlice({
       const outerIndex = state.tempData.index
       state.items.comments[outerIndex].replies.splice(innerIndex,1)
     }
+    localStorage.setItem("postItems", JSON.stringify(state.items))
   },
   editComment(state, action){
     let mode = action.payload.mode;
@@ -53,6 +63,7 @@ const postSlice = createSlice({
         state.items.comments[action.payload.ids].replies[pickedIndex] = postData
       }
     }
+    localStorage.setItem("postItems", JSON.stringify(state.items))
   },
   increaseVote(state, action){
     let mode = action.payload.mode;
@@ -74,6 +85,7 @@ const postSlice = createSlice({
       }
       
     }
+    localStorage.setItem("postItems", JSON.stringify(state.items))
   },
   decreaseVote(state,action){
     let mode = action.payload.mode;
@@ -98,6 +110,7 @@ const postSlice = createSlice({
       }
       
     }
+    localStorage.setItem("postItems", JSON.stringify(state.items))
   }
 }})
 

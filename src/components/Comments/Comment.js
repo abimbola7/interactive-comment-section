@@ -46,6 +46,7 @@ const Comment = (props) => {
           />
           <CommentFooter
           setIsEditing={setIsEditing}
+          isEditing={isEditing}
           index={index}
           ids={commentData.id}
           mode="SEND"

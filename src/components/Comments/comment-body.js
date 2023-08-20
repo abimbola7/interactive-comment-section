@@ -67,7 +67,7 @@ const CommentBody = (props) => {
             />
             {
               isEditing && <Button
-              className="bg-moderateBlue font-bold text-white px-1 py-1 xs:px-4 xs:py-2 rounded-lg float-right"
+              className="bg-moderateBlue font-bold text-white px-2 py-1 xs:px-4 xs:py-2 rounded-lg float-right"
               content="UPDATE"
               onClick={updateHandler}
               />

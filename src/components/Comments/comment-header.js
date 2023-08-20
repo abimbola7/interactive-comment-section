@@ -78,7 +78,7 @@ const CommentHeader = (props) => {
                     you
                     </div>
                 }
-                <p className="">{date}</p>
+                <p className="text-sm xs:text-base">{date}</p>
               </div>
               {
                 user.username !== users.username ? (
