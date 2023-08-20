@@ -34,8 +34,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [](https://github.com/abimbola7/interactive-comment-section)
-- Live Site URL: [](https://abimbola7.github.io/interactive-comment-section/)
+- Solution URL: [github](https://github.com/abimbola7/interactive-comment-section)
+- Live Site URL: [live site](https://abimbola7.github.io/interactive-comment-section/)
 
 - Semantic HTML5 markup
 - CSS custom properties
