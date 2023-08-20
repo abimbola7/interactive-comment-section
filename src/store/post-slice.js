@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit"
-
 const postInitialState = {
   items : {},
   postState : false,
@@ -12,6 +11,7 @@ const postSlice = createSlice({
   initialState : postInitialState,
   reducers: {
     fetchPost(state, action){
+      console.log("items",action.payload)
       state.items = {...action.payload}
     },
     addComment(state, action){
@@ -105,17 +105,15 @@ const postSlice = createSlice({
 
 
 export const fetchPostData = () => {
-  return async (dispatch) => {
-    const fetchData = async () => {
-      const response = await fetch("/data.json");
-      if (!response.ok) {
-        throw new Error("Could not fetch data");
-      }
-      const data = await response.json();
-      return data;
+  return (dispatch) => {
+    const fetchData =  () => {
+      const response = require("../json/data.json");
+      console.log(response)
+      return response;
     }
     try {
-      const postData = await fetchData();
+      const postData =  fetchData();
+      console.log('auto',postData)
       dispatch(postActions.fetchPost(postData))
     } catch (error) {
       console.log(error.message);

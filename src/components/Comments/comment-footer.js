@@ -7,7 +7,6 @@ import Votes from "../ui/votes";
 
 const CommentFooter = (props) => {
   const dispatch = useDispatch();
-  console.log(props.commentData);
   const {
     user,
     createdAt,

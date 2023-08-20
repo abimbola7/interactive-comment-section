@@ -14,6 +14,7 @@ const Comment = (props) => {
   const { user, index } = props;
   const [isReplying, setIsReplying] = useState(false);
   const [isEditing, setIsEditing] = useState(false)
+  console.log(commentData.user.image);
   return (
     <div className="space-y-3">
       <Card

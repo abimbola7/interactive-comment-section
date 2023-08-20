@@ -16,7 +16,7 @@ const CommentHeader = (props) => {
   } = props.commentData
   const { users, mode, ids, index, ind } = props 
   const { setIsReplying, setIsEditing } = props;
-
+  // console.log(user.image);
 
   useEffect(() => {
     function getTime(){
