@@ -93,10 +93,6 @@ const postSlice = createSlice({
     let i = action.payload.index
     if (mode === "SEND") {
       let pickedItem  = state.items.comments.find((elem)=>elem.id === id);
-      console.log(pickedItem);
-      if (pickedItem.score <= 0) {
-        return;
-      }
       if (pickedItem.userVote !== "downvote") {
         pickedItem.score -= 1
         pickedItem.userVote = "downvote"
